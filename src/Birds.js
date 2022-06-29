@@ -18,10 +18,9 @@ export default function Birds() {
 
   return (
     <div>
-      {' '}
       Birds
       {birds.map((bird, i) => (
-        <BirdCard key={bird + i} {...bird} />
+        <BirdCard className='bird' key={bird.common_name + i} {...bird} />
       ))}
     </div>
   );
