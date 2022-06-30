@@ -37,4 +37,35 @@ export async function deleteBird(id) {
   const data = await rawResponse.json();
   return data;
 }
-//method, headers, body
+
+export async function getUser(id) {
+  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${id}`, {
+    method: 'GET',
+  });
+  const data = await rawResponse.json();
+  return data;
+}
+
+export async function signUpUser() {
+  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/`, {
+    method: 'POST',
+  });
+  const data = await rawResponse.json();
+  return data;
+}
+
+export async function signInUser() {
+  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/sessions`, {
+    method: 'POST',
+  });
+  const data = await rawResponse.json();
+  return data;
+}
+
+export async function signOut() {
+  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/sessions`, {
+    method: 'DELETE',
+  });
+  const data = await rawResponse.json();
+  return data;
+}

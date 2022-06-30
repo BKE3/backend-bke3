@@ -1,39 +1,55 @@
 import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Detail from './Detail';
 import Birds from './Birds';
 import CreatePage from './CreatePage';
 import UpdatePage from './UpdatePage';
+import AuthPage from './AuthPage';
+import { signOut } from './services/fetch-utils';
 
 function App() {
+  const [user, setUser] = useState();
+  const [token, setToken] = useState();
+
+  async function handleLogout() {
+    await signOut();
+    setToken('');
+  }
+
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/birds"> All Birds </Link>
-          </li>
-          <li>
-            <Link to="/birds/create"> Create a New Bird! </Link>
-          </li>
-        </ul>
+        {token ? (
+          <ul>
+            <li>
+              <Link to="/birds"> All Birds </Link>
+            </li>
+            <li>
+              <Link to="/birds/create"> Create a New Bird! </Link>
+            </li>
+            <button onClick={handleLogout}> Log Out</button>
+          </ul>
+        ) : (
+          ''
+        )}
       </div>
 
       <Switch>
-        <Route exact path="/birds">
-          <Birds />
+        <Route exact path="/">
+          {token ? <Birds /> : <AuthPage setToken={setToken} />}
         </Route>
-
+        <Route exact path="/birds">
+          {token ? <Birds /> : <Redirect to="/" />}
+        </Route>
         <Route exact path="/birds/create">
-          <CreatePage />
+          {token ? <CreatePage /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/birds/:id">
-          <Detail />
+          {token ? <Detail /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/birds/update/:id">
-          
-          <UpdatePage />
+          {token ? <UpdatePage /> : <Redirect to="/" />}
         </Route>
       </Switch>
     </Router>
