@@ -28,7 +28,7 @@ export default function UpdatePage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await updateBird(birdInForm);
+    await updateBird(id, birdInForm);
     push('/birds');
   }
   return (

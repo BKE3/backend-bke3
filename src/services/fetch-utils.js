@@ -20,8 +20,8 @@ export async function createBird(bird) {
   return data;
 }
 
-export async function updateBird(bird) {
-  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/birds/update`, {
+export async function updateBird(id, bird) {
+  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/birds/update/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bird),
