@@ -11,7 +11,7 @@ export default function CreatePage() {
     common_name: '',
     habitat: '',
     life_expectancy: '',
-    flightless: '',
+    flightless: false,
     image_url: '',
   });
 
@@ -70,15 +70,6 @@ export default function CreatePage() {
             <option value="true">Flightless</option>
             <option value="false">Flightful</option>
           </select>
-        </label>
-        <label>
-          Life Expectancy
-          <input
-            required
-            value={birdInForm.life_expectancy}
-            name="life-expectancy"
-            onChange={(e) => setBirdInForm({ ...birdInForm, life_expectancy: e.target.value })}
-          />
         </label>
         <label>
           Give us an Image of your Bird

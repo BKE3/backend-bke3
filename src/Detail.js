@@ -14,7 +14,8 @@ export default function Detail() {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, []); //eslint-disable-line
+
   return (
     <div>
       <h1>{bird.common_name}</h1>
