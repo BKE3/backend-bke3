@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getBirdById } from './services/fetch-utils';
+import { getBirdById, deleteBird } from './services/fetch-utils';
 import { useHistory } from 'react-router-dom';
 
 export default function Detail() {
@@ -21,6 +21,10 @@ export default function Detail() {
   function handleUpdate() {
     push(`/birds/update/${id}`);
   }
+  async function handleDelete() {
+    await deleteBird(id);
+    push('/birds');
+  }
 
   return (
     <div>
@@ -34,6 +38,7 @@ export default function Detail() {
         {bird.flightless === false && <span>🦆</span>}    
       </p>
       <button onClick={handleUpdate}>Update this Bird!</button>
+      <button onClick={handleDelete}>Delete this Bird!</button>
     </div>
   );
 }
