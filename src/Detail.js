@@ -30,8 +30,8 @@ export default function Detail() {
       <p>{bird.habitat}</p>
       <p>{bird.life_expectancy}</p>
       <p>
-        {bird.flightless === true && <p>🐧</p>}
-        {bird.flightless === false && <p>🦆</p>}    
+        {bird.flightless === true && <span>🐧</span>}
+        {bird.flightless === false && <span>🦆</span>}    
       </p>
       <button onClick={handleUpdate}>Update this Bird!</button>
     </div>

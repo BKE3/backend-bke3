@@ -34,7 +34,7 @@ export default function UpdatePage() {
   return (
     <div className="create">
       <form onSubmit={handleSubmit}>
-        <h2>Add a Bird!</h2>
+        <h2>Update this Bird!</h2>
         <label>
           Latin Name
           <input
