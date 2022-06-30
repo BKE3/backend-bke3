@@ -1,6 +1,7 @@
 export async function getAllBirds() {
   const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/birds`);
   const data = await rawResponse.json();
+  console.log(data);
   return data;
 }
 
