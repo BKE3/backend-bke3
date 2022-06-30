@@ -30,4 +30,11 @@ export async function updateBird(id, bird) {
   const data = await rawResponse.json();
   return data;
 }
+export async function deleteBird(id) {
+  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/birds/delete/${id}`, {
+    method: 'DELETE',
+  });
+  const data = await rawResponse.json();
+  return data;
+}
 //method, headers, body
