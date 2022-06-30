@@ -2,11 +2,13 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBirdById } from './services/fetch-utils';
+import { useHistory } from 'react-router-dom';
 
 export default function Detail() {
   const [bird, setBird] = useState({});
   const { id } = useParams();
-  
+  const { push } = useHistory();
+
   async function fetch() {
     const birdData = await getBirdById(id);
     setBird(birdData);
@@ -15,6 +17,10 @@ export default function Detail() {
   useEffect(() => {
     fetch();
   }, []); //eslint-disable-line
+
+  function handleUpdate() {
+    push(`/birds/update/${id}`);
+  }
 
   return (
     <div>
@@ -27,6 +33,7 @@ export default function Detail() {
         {bird.flightless === true && <p>🐧</p>}
         {bird.flightless === false && <p>🦆</p>}    
       </p>
+      <button onClick={handleUpdate}>Update this Bird!</button>
     </div>
   );
 }

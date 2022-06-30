@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Detail from './Detail';
 import Birds from './Birds';
 import CreatePage from './CreatePage';
+import UpdatePage from './UpdatePage';
 
 function App() {
   return (
@@ -27,9 +28,12 @@ function App() {
         <Route exact path="/birds/create">
           <CreatePage />
         </Route>
-
         <Route exact path="/birds/:id">
           <Detail />
+        </Route>
+        <Route exact path="/birds/update/:id">
+          
+          <UpdatePage />
         </Route>
       </Switch>
     </Router>
