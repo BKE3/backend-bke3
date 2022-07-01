@@ -46,9 +46,14 @@ export async function getUser(id) {
   return data;
 }
 
-export async function signUpUser() {
-  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/`, {
+export async function signUpUser(email, password) {
+  const rawResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users`, {
     method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   });
   const data = await rawResponse.json();
   return data;

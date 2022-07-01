@@ -1,4 +1,3 @@
-import { getSuggestedQuery } from '@testing-library/react';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getUser, signUpUser, signInUser } from './services/fetch-utils';
@@ -19,6 +18,7 @@ export default function AuthPage({ setToken }) {
     await signInUser(signInData.email, signInData.password);
 
     const { access_token } = await getUser();
+
     setToken(access_token);
 
     push('/birds');
